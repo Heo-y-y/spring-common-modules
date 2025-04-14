@@ -1,0 +1,52 @@
+### Java & Gradle ###
+*.class
+*.jar
+*.war
+*.ear
+
+/build/
+**/build/
+.gradle/
+out/
+**/out/
+
+# Bin or compiled artifacts
+bin/
+**/bin/
+*.log
+*.tmp
+*.swp
+
+### Gradle Wrapper ###
+!gradle/wrapper/gradle-wrapper.jar
+!gradlew
+!gradlew.bat
+!gradle/wrapper/gradle-wrapper.properties
+
+### IntelliJ IDEA ###
+.idea/
+*.iml
+*.iws
+*.ipr
+
+### STS (Spring Tool Suite) ###
+.apt_generated/
+.factorypath/
+.project
+.settings/
+.springBeans/
+.sts4-cache/
+
+### VS Code ###
+.vscode/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### OS / 기타 ###
+.DS_Store
+Thumbs.db

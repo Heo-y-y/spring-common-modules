@@ -1,0 +1,9 @@
+server:
+  port: 8080
+
+controller:
+  base-url: /api/test/v1
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
