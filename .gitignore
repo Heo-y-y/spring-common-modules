@@ -1,44 +1,30 @@
-### Java & Gradle ###
-*.class
-*.jar
-*.war
-*.ear
-
-/build/
-**/build/
-.gradle/
-out/
-**/out/
-
-# Bin or compiled artifacts
-bin/
-**/bin/
-*.log
-*.tmp
-*.swp
-
-### Gradle Wrapper ###
+HELP.md
+.gradle
+build/
 !gradle/wrapper/gradle-wrapper.jar
-!gradlew
-!gradlew.bat
-!gradle/wrapper/gradle-wrapper.properties
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
 
 ### IntelliJ IDEA ###
-.idea/
-*.iml
+.idea
 *.iws
+*.iml
 *.ipr
-
-### STS (Spring Tool Suite) ###
-.apt_generated/
-.factorypath/
-.project
-.settings/
-.springBeans/
-.sts4-cache/
-
-### VS Code ###
-.vscode/
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
 
 ### NetBeans ###
 /nbproject/private/
@@ -47,6 +33,8 @@ bin/
 /nbdist/
 /.nb-gradle/
 
-### OS / 기타 ###
+### VS Code ###
+.vscode/
+
+### MAC ###
 .DS_Store
-Thumbs.db
