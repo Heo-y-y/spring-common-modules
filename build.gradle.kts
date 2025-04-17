@@ -1,52 +1,71 @@
+import org.gradle.api.JavaVersion
+import org.gradle.api.tasks.compile.JavaCompile
+
 plugins {
-    id("io.spring.dependency-management") version "1.1.7"
     java
+    id("io.spring.dependency-management") version "1.1.6"
 }
 
-group = "com.heoyy"
-version = "0.0.1-SNAPSHOT"
+val springBootVersion = "3.0.6"
+val springBootDependenciesVersion = "3.0.4"
+val springBootStarterWebVersion = "3.0.4"
+val lombokVersion = "1.18.26"
+val mysqlConnectorVersion = "8.0.33"
 
-java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(17))
-    }
+allprojects {
+    group = "com.nuri.medrcalc"
+    version = "1.0.0-SNAPSHOT"
 }
 
-repositories {
-    mavenCentral()
-}
-
-// 하위 모듈 공통 설정
 subprojects {
     apply(plugin = "java")
+    apply(plugin = "java-library")
     apply(plugin = "io.spring.dependency-management")
-    apply(plugin = "java-library") // 다른 모듈에서 api/export 의존성 쓸 수 있도록
 
-    group = rootProject.group
-    version = rootProject.version
+    java {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    tasks.withType<JavaCompile>().configureEach {
+        options.encoding = "UTF-8"
+        options.compilerArgs.add("-parameters")
+    }
+
+    sourceSets["main"].resources {
+        srcDir("src/main/resources")
+        include("**/*.xml")
+    }
 
     repositories {
         mavenCentral()
     }
 
-    java {
-        toolchain {
-            languageVersion.set(JavaLanguageVersion.of(17))
+    configurations.configureEach {
+        if (this.name == "compileOnly") {
+            extendsFrom(configurations.annotationProcessor.get())
         }
     }
 
-    // 테스트 플랫폼 공통 적용
-    tasks.withType<Test> {
-        useJUnitPlatform()
-    }
-
-    // 공통 의존성
     dependencies {
-        implementation(platform("org.springframework.boot:spring-boot-dependencies:3.2.5"))
+        // Core Spring
+        implementation("org.springframework.boot:spring-boot-starter-web:$springBootStarterWebVersion")
+        implementation(platform("org.springframework.boot:spring-boot-dependencies:$springBootDependenciesVersion"))
 
-        compileOnly("org.projectlombok:lombok:1.18.30")
-        annotationProcessor("org.projectlombok:lombok:1.18.30")
+        // Web + Validation
+        implementation("org.springframework:spring-web:6.0.8")
+        implementation("org.springframework.boot:spring-boot-starter-validation:$springBootStarterWebVersion")
 
-        testImplementation("org.springframework.boot:spring-boot-starter-test")
+        // Lombok
+        compileOnly("org.projectlombok:lombok:$lombokVersion")
+        annotationProcessor("org.projectlombok:lombok:$lombokVersion")
     }
+}
+
+tasks.register<Delete>("cleanLogs") {
+    delete("logs")
+}
+
+tasks.named("clean") {
+    dependsOn("cleanLogs")
 }

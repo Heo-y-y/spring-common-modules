@@ -1,3 +1,0 @@
-spring:
-  profiles:
-    active: local  # <== 여기서 기본 활성 프로파일 지정
