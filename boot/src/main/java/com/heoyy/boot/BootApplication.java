@@ -4,6 +4,7 @@ import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 import java.time.LocalDateTime;
 import java.util.TimeZone;
@@ -11,6 +12,7 @@ import java.util.TimeZone;
 
 @Slf4j
 @SpringBootApplication
+@EnableAspectJAutoProxy
 public class BootApplication {
     public static void main(String[] args) {
         SpringApplication.run(BootApplication.class, args);
