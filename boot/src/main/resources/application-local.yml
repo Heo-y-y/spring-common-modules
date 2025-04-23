@@ -1,9 +1,12 @@
+# 서버 PORT 설정
 server:
   port: 8080
 
+# API 설정
 api:
   prefix: /heoyy/api/v1/
 
+# Swagger 설정
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
@@ -18,3 +21,11 @@ springdoc:
   display-request-duration: true
   default-consumes-media-type: application/json;charset=UTF-8
   default-produces-media-type: application/json;charset=UTF-8
+
+# Logging 설정
+logging:
+  level:
+    root: INFO
+    com.heoyy: DEBUG
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{30}.%M[%line] - %msg%n'

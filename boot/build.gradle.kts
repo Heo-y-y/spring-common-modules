@@ -16,3 +16,8 @@ dependencies {
     // AOP
     implementation("org.springframework.boot:spring-boot-starter-aop")
 }
+
+// 중복 리소스 처리 전략
+tasks.withType<ProcessResources> {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
